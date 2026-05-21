@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Path \"d:\\\\FDE\\\\Helpdesk Ticket Management System\" -Recurse -File | Where-Object {$_.Extension -match '\\\\.\\(html|css|js|jsx|tsx|ts\\)$'} | Select-Object FullName, Extension | Sort-Object FullName)",
+      "PowerShell(Head -50)",
+      "Bash(Get-ChildItem -Path \"d:\\\\FDE\\\\Helpdesk Ticket Management System\\\\backend\" -Recurse -Filter \"*.py\")",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Sort-Object)",
+      "Bash(Test-Path \"d:\\\\FDE\\\\Helpdesk Ticket Management System\\\\README.md\")"
+    ]
+  }
+}
