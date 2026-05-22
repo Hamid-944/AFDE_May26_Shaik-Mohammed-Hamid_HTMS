@@ -8,6 +8,7 @@ import TicketsPage from './pages/TicketsPage';
 import CreateTicketPage from './pages/CreateTicketPage';
 import SearchPage from './pages/SearchPage';
 import TicketDetailsPage from './pages/TicketDetailsPage';
+import AnalyticsPage from './pages/AnalyticsPage';
 import { clearSession, createTicket, deleteTicket, fetchTicket, fetchTickets, getStoredUser, login, searchTickets, setSession, updateTicket } from './api';
 
 function AnimatedRoute({ children }) {
@@ -127,6 +128,7 @@ export default function App() {
           <Route path="/create" element={<AnimatedRoute><CreateTicketPage onSubmitTicket={handleCreateTicket} user={user} /></AnimatedRoute>} />
           <Route path="/search" element={<AnimatedRoute><SearchPage tickets={tickets} onSearch={handleSearch} /></AnimatedRoute>} />
           <Route path="/tickets/:ticketId" element={<AnimatedRoute><TicketDetailsRoute tickets={tickets} canManage={canManage} onUpdateTicket={handleUpdateTicket} /></AnimatedRoute>} />
+          {canManage && <Route path="/analytics" element={<AnimatedRoute><AnalyticsPage /></AnimatedRoute>} />}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AnimatePresence>

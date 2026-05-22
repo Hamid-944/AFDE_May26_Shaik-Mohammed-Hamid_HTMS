@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from core.config import settings
 from database import Base, engine, SessionLocal, backfill_ticket_owner_email, ensure_ticket_owner_column, fix_misattributed_employee_tickets
+from routers.analytics import router as analytics_router
 from routers.auth import router as auth_router
 from routers.tickets import router as tickets_router
 from services.bootstrap import seed_demo_tickets, seed_demo_users
@@ -37,6 +38,7 @@ app.add_middleware(
 
 app.include_router(auth_router)
 app.include_router(tickets_router)
+app.include_router(analytics_router)
 
 
 @app.get("/")

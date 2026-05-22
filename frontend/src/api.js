@@ -64,3 +64,38 @@ export async function searchTickets(params = {}) {
   const response = await client.get('/search', { params });
   return response.data;
 }
+
+export async function fetchAnalyticsSummary() {
+  const response = await client.get('/analytics/summary');
+  return response.data;
+}
+
+export async function fetchAnalyticsCategories() {
+  const response = await client.get('/analytics/categories');
+  return response.data;
+}
+
+export async function fetchAnalyticsPriorityDistribution() {
+  const response = await client.get('/analytics/priority-distribution');
+  return response.data;
+}
+
+export async function fetchAnalyticsDepartmentStats() {
+  const response = await client.get('/analytics/department-stats');
+  return response.data;
+}
+
+export async function fetchAnalyticsResolutionTrends() {
+  const response = await client.get('/analytics/resolution-trends');
+  return response.data;
+}
+
+export async function fetchEtlStatus() {
+  const response = await client.get('/analytics/etl-status');
+  return response.data;
+}
+
+export async function runEtl() {
+  const response = await client.post('/analytics/run-etl');
+  return response.data;
+}

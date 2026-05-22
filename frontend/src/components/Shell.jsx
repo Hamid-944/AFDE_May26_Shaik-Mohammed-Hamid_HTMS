@@ -1,14 +1,19 @@
 import { NavLink } from 'react-router-dom';
-import { BadgeCheck, LayoutDashboard, PlusCircle, Search, Ticket, Shield, LogOut } from 'lucide-react';
+import { BadgeCheck, BarChart2, LayoutDashboard, PlusCircle, Search, Ticket, Shield, LogOut } from 'lucide-react';
 
-const navItems = [
+const BASE_NAV = [
   { to: '/', label: 'Dashboard', icon: LayoutDashboard, end: true },
   { to: '/tickets', label: 'Tickets', icon: Ticket },
   { to: '/create', label: 'Create Ticket', icon: PlusCircle },
   { to: '/search', label: 'Search', icon: Search },
 ];
 
+const ADMIN_NAV = [
+  { to: '/analytics', label: 'Analytics', icon: BarChart2 },
+];
+
 export default function Shell({ user, onLogout, children }) {
+  const navItems = user?.role === 'admin' ? [...BASE_NAV, ...ADMIN_NAV] : BASE_NAV;
   return (
     <div className="app-shell">
       <aside className="sidebar glass-panel">
@@ -35,7 +40,7 @@ export default function Shell({ user, onLogout, children }) {
           {navItems.map((item) => {
             const Icon = item.icon;
             return (
-              <NavLink key={item.to} to={item.to} end={item.end} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+              <NavLink key={item.to} to={item.to} end={item.end ?? false} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
                 <Icon size={18} />
                 <span>{item.label}</span>
               </NavLink>
